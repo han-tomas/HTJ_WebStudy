@@ -65,9 +65,11 @@ public class DataCollection {
 			{
 				Document doc = Jsoup.connect(vo.getLink()).get();
 				Elements link=doc.select("div.info span.title a");
+				// 카테고리별
 				for(int i=0;i<link.size();i++)
 				{
 					System.out.println(link.get(i).attr("href"));
+					Document doc2 = Jsoup.connect("https://www.mangoplate.com"+link.get(i).attr("href")).get();
 				}
 			}
 		}catch(Exception ex) {}
