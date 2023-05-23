@@ -149,7 +149,7 @@ public class FoodDAO{
 	bad NUMBER,
 	poster VARCHAR(4000) CONSTRAINT fh_poster_nn NOT NULL, 
 	 */
-	public void foodData(FoodVO vo)
+	public void foodDataInsert (FoodVO vo)
 	{
 		try
 		{
