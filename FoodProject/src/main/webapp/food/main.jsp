@@ -30,7 +30,7 @@
       <%for(int i=0;i<12;i++)
          {
     	  	CategoryVO vo = list.get(i);
-            %>
+       %>
             
          <div class="col-md-3">
              <div class="thumbnail">
@@ -42,7 +42,8 @@
                  </div>
                </a>
              </div>
-           </div>            <%
+           </div>           
+         <%
          }
          %>
       </div>
@@ -51,7 +52,7 @@
       <%for(int i=12;i<18;i++)
          {
     	  	CategoryVO vo = list.get(i);
-            %>
+       %>
             
          <div class="col-md-4">
              <div class="thumbnail">
@@ -63,7 +64,8 @@
                  </div>
                </a>
              </div>
-           </div>            <%
+           </div>       
+        <%
          }
          %>
       </div>
@@ -72,7 +74,7 @@
       <%for(int i=18;i<30;i++)
          {
     	  	CategoryVO vo=list.get(i);
-            %>
+       %>
             
          <div class="col-md-4">
              <div class="thumbnail">
@@ -84,7 +86,8 @@
                  </div>
                </a>
              </div>
-           </div>            <%
+           </div>          
+        <%
          }
          %>
       </div>

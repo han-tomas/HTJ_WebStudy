@@ -1,7 +1,6 @@
 package com.sist.manager;
 import java.util.*;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
