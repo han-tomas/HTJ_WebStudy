@@ -37,7 +37,6 @@ public class FoodListServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<div class=container>");
-		out.println("<h1>믿고보는 맛집리스트</h1>");
 		out.println("<div class=row>");
 		out.println("<div class=jumbotron>");
 		out.println("<center>");
@@ -53,10 +52,10 @@ public class FoodListServlet extends HttpServlet {
 			out.println("<table class=table>");
 			out.println("<tr>");
 			out.println("<td width=30% align=center rowspan=4>");
-			out.println("<img src="+vo.getPoster()+" class=img-rounded style=\"width:240px; height:200px\">");
+			out.println("<a href=FoodDetailServlet?fno="+vo.getFno()+"><img src="+vo.getPoster()+" class=img-rounded style=\"width:240px; height:200px\">");
 			out.println("</td>");
 			out.println("<td width=70%>");
-			out.println(vo.getName()+"&nbsp;<span style=\"color:orange\">"+vo.getScore()+"</span>");
+			out.println("<a href=FoodDetailServlet?fno="+vo.getFno()+">"+vo.getName()+"&nbsp;<span style=\"color:orange\">"+vo.getScore()+"</span>");
 			out.println("</td>");
 			out.println("</tr>");
 			out.println("<tr>");
