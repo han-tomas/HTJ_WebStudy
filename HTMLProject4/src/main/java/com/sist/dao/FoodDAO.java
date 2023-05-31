@@ -210,12 +210,12 @@ public class FoodDAO {
 					+ "FROM food_location "
 					+ "WHERE address LIKE '%'||?||'%'";
 			// mysql => LIKE CONCAT('%','?','%')*/
-			String sql="SELECT fno,name,poster,score,num "
-					+ "FROM(SELECT fno,name,poster,score,rownum as num "
-					+ "FROM (fno,name,poster,score "
-					+ "FROM food_location "
-					+ "WHERE address Like '%'||?||'%')) "
-					+ "WHERE num BETWEEN ? AND ?";
+			String sql="SELECT fno, name, poster, score, num "
+				    + "FROM (SELECT fno, name, poster, score, rownum as num "
+				    + "FROM (SELECT fno, name, poster, score "
+				    + "FROM food_location "
+				    + "WHERE address LIKE '%'||?||'%')) "
+				    + "WHERE num BETWEEN ? AND ?";
 			
 			ps=conn.prepareStatement(sql);
 			int rowSize=12;
@@ -233,6 +233,12 @@ public class FoodDAO {
 				FoodVO vo = new FoodVO();
 				vo.setFno(rs.getInt(1));
 				vo.setName(rs.getString(2));
+//				String poster=rs.getString(3);
+//				if (poster != null && poster.length() > 0 && poster.contains("^")) {
+//				    poster = poster.substring(0, poster.indexOf("^"));
+//				    poster = poster.replace("#", "&");
+//				    vo.setPoster(poster);
+//				}
 				String poster=rs.getString(3);
 				poster=poster.substring(0,poster.indexOf("^"));
 				poster=poster.replace("#", "&");
@@ -259,9 +265,11 @@ public class FoodDAO {
 		{
 			getConnection();
 			String sql="SELECT COUNT(*) FROM food_location "
-					+ "WHERE address LIKE '%'||?||'%'";
+				    + "WHERE address LIKE '%'||?||'%'";
 			ps=conn.prepareStatement(sql);
+			ps.setString(1, addr);
 			ResultSet rs=ps.executeQuery();
+			
 			rs.next();
 			count=rs.getInt(1);
 			rs.close();
