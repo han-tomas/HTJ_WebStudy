@@ -230,21 +230,24 @@ public class FoodDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				FoodVO vo = new FoodVO();
-				vo.setFno(rs.getInt(1));
-				vo.setName(rs.getString(2));
-//				String poster=rs.getString(3);
-//				if (poster != null && poster.length() > 0 && poster.contains("^")) {
-//				    poster = poster.substring(0, poster.indexOf("^"));
-//				    poster = poster.replace("#", "&");
-//				    vo.setPoster(poster);
-//				}
-				String poster=rs.getString(3);
-				poster=poster.substring(0,poster.indexOf("^"));
-				poster=poster.replace("#", "&");
-				vo.setPoster(poster);
-				vo.setScore(rs.getDouble(4));
-				list.add(vo);
+				try // while문 안에 try-catch절을 줌으로써, ^가 없는 poster를 생략하고 정상 수행
+				{
+					FoodVO vo = new FoodVO();
+					vo.setFno(rs.getInt(1));
+					vo.setName(rs.getString(2));
+	//				String poster=rs.getString(3);
+	//				if (poster != null && poster.length() > 0 && poster.contains("^")) {
+	//				    poster = poster.substring(0, poster.indexOf("^"));
+	//				    poster = poster.replace("#", "&");
+	//				    vo.setPoster(poster);
+	//				}
+					String poster=rs.getString(3);
+					poster=poster.substring(0,poster.indexOf("^"));
+					poster=poster.replace("#", "&");
+					vo.setPoster(poster);
+					vo.setScore(rs.getDouble(4));
+					list.add(vo);
+					}catch(Exception ex) {}
 			}
 			rs.close();
 		}catch(Exception ex)

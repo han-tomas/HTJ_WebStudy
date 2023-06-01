@@ -27,9 +27,7 @@ public class FoodSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String addr = request.getParameter("addr");
 		if(addr==null)
-			addr="동대문"
-					+ ""
-					+ ""; // 검색어가 없을때의 디폴트값 설정
+			addr="마포"; // 검색어가 없을때의 디폴트값 설정
 		
 		String strPage=request.getParameter("page");
 		if(strPage==null)
