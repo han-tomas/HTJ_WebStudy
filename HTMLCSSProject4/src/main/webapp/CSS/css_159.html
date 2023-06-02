@@ -1,0 +1,128 @@
+<!-- 
+	1. CSS => 선택자
+		1) 태그 ==> 태그명 {속성명:값}
+		2) id ==> id명{속성명:값}
+		3) class ==> class명{속성명:값}
+		4) 속성선택자 ==> 태그명[속성=값]{속성명:값}
+			태그명[속성*=값]-contains , 태그명[속성^=값]-startswith, 
+			태그명[속성$=값]-endswith, 태그명[속성=값]-equals
+			-------------------------------------------- * , ^ , $ (REGEXP: 정규식)
+	    5) 동위선택자 , 자손/후손 선택자
+	    		div
+	    	 	 |
+	    	 ----------------
+	    	 |		|		|
+	    	 h1		p		p	============> 자손 (div > h1)
+	    	----------		| (div> h1~p)	
+	    	(div> h1+p)	---------
+	    	  			|		|	
+	    	  			h1		h1	========> 후손 (div h1)
+	    	=> 목록은 주로 구분이 거의 없다
+	    	   th+td, dt+dd => 상세보기
+	   	6) 가상 선택자
+	   		:hover, :checked, :focus
+	   	7) 구조 선택자
+	   		:nth-child, :first-child. :last-child
+	   	8) 문자 선택자
+	   		::after, ::before
+	   	------------------------------------------------------------
+	   	1) 태그선택 => 2) 디자인과 관련된 속성 => 사용자 정의는 없다.
+	   	
+	   	속성
+	   		1) 텍스트 관련 속성
+	   			=> 글자 크기 속성
+	   				font-size=(px,em)
+	   					px=14
+	   					em=> 2em (14*2px) 1.2em (14*1.2px)
+	   			=> 글자 스타일 (글꼴)
+	   				font-family: 궁서체 고딕체 바탕체
+	   				font-weight: bold
+	   			=> 정렬
+	   				text-align:(left|center|right)
+	   							IE => center
+	   							Crome => left
+	   				text-decoration: none=> underline X => <a>(default=>underline)</a>	
+	   				vertical-align:(top|middle|bottom)
+	   				=============== td태그 (여러문장일때 => 중간)	
+	   				white-space : 자동 줄바꿈(내용, 줄거리)
+	   				line-height : 자동 간격 
+	   		2) 이미지 관련 속성
+	   				background-image:url('')
+	   				background-size:width,height => cover
+	   				background-color:yellow
+	   								 rgb(255,255,255)
+	   								 #FFF , #FC6
+	   				blackground:				 
+	   		3) 위치 속성 => 159페이지
+	   				margin : 태그와 태그의 여백
+	   				padding : 태그안에 문자, 이미지 여백
+	   				-------------------------------
+	   				margin
+	   					= margin-left
+	   					= margin-right
+	   					= margin-top
+	   					= margin-botton
+	   					=> margin:시계방향
+	   						      top right bottom left
+	   							  ----------------------
+	   			margin: 10px;     10px 10px  10px   10px
+	   		margin: 10px 20px;    10px 20px  10px   20px
+	   	margin: 10px 20px 30px;   10px 20px  30px   20px
+	   	
+	   				padding
+	   					= padding-left
+	   					= padding-right
+	   					= padding-top
+	   					= padding-bottom
+	   					 ---------------- 시계방향 		
+	   		4) 테두리 속성
+	   				border
+	   					= border-width
+	   					= border-style(solid, dotted, dashed, double)
+	   					= border-color
+	   					=> border: width style color
+	   		5) 목록 속성
+	   				= list-style-type:none
+	   		6) 박스 모델
+	   				= inline, block, inline-block
+	   								 ------------ 태그의 width, height 변경
+	   				= inline : input, img, textarea, select, b, em, span
+	   				= block : div, table, ul, ol, br, p
+	   								 
+	   		7) 포지션
+	   				= static => 코딩 순서로 출력
+	   				= absolute => 절대 좌표(top, bottom, left, right)
+	   				= relative => 상대 좌표
+	   				= fixed : 고정(메뉴, 퀵메뉴, 채팅창)
+	   		8) 기타	
+	   				= z-index(레이어)
+	   				= float(left|right)
+	   					=> 해제
+	   		9) 반응형 웹		 	   
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+a{
+	display:block;
+	color: black;
+	text-decoration: none;
+	
+}
+a:hover{
+	color: cyan;
+	text-decoration: underline;
+}
+</style>
+</head>
+<body>
+	<a href="#">'발롱도르'가 사우디로 간다...벤제마, 호날두 울린 '우승팀' 합류 선언</a>
+	<a href="#">'발롱도르'가 사우디로 간다...벤제마, 호날두 울린 '우승팀' 합류 선언</a>
+	<a href="#">'발롱도르'가 사우디로 간다...벤제마, 호날두 울린 '우승팀' 합류 선언</a>
+	<a href="#">'발롱도르'가 사우디로 간다...벤제마, 호날두 울린 '우승팀' 합류 선언</a>
+	<a href="#">'발롱도르'가 사우디로 간다...벤제마, 호날두 울린 '우승팀' 합류 선언</a>
+</body>
+</html>

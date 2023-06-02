@@ -1,0 +1,51 @@
+<!-- 
+	181page => 글자 속성
+	사이트의 기본 => 모든 화면 글꼴을 동일하게 만든다.
+	font-family : 글꼴 => 여러개 지원
+				  시스템에서 지원, 외부(구글폰트)
+	font-size : 크기(단위 : px, em)
+							  -- 2em => 2*14 =>28
+    font-weight : 굵기 (b), (i)
+    color : 글자 색상
+    		=> 시스템에서 지원 : yellow, red ...
+    		=> rgb(255,255,255)
+    		=> 16진법 => #FFFFFF
+    text-align : 정렬(left, conter, right) 
+    				 ---- default
+    vertical-align: 정렬(top, middle, botten)
+    						 ------ default
+	line-height : 줄간의 간격(자간)    						 									  			  
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+<style type="text/css">
+/* 
+	글꼴
+	선택자{
+		font-family: 글자체 [,글자체 ...여러개 사용가능]
+	}
+ */
+ 
+ #aaa{ /* 태그명#아이디명도 사용가능 */
+  	font-family: 궁서체;
+ }
+ .bbb{
+ 	font-family: "맑은 고딕",궁서체, 굴림;/* 글씨체가 없으면 다음 언어스타일로 넘어감 */
+ }
+ .ccc{
+ 	font-family: 'Dancing Script', cursive;
+ }
+</style>
+</head>
+<body>
+	<h1 id="aaa">자바</h1>
+	<h1 class="bbb">오라클</h1>
+	<h1 class="bbb">스프링</h1>
+	<h1 class="ccc">아마존 웹 서비스(AWS)</h1>
+	<h1 class="ccc">프로젝트</h1>
+</body>
+</html>
