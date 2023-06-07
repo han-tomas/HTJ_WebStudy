@@ -5,10 +5,10 @@ import com.sist.dbconn.*;
 import com.sist.dao.*;
 public class SeoulDAO {
 	private String[] tables= {
+			"",
 		"seoul_location",
 		"seoul_nature",
-		"seoul_shop",
-		"seoul_hotel"
+		"seoul_shop"
 	};
 	private Connection conn;
 	private PreparedStatement ps;
@@ -22,19 +22,33 @@ public class SeoulDAO {
 		return dao;
 	}
 	// 1. 기능
-	public List<SeoulVO> seoulListData(int page, int type)
+	public List<SeoulVO> seoulListData(int type)
 	{
 		List<SeoulVO> list = new ArrayList<SeoulVO>();
 		try
 		{
-			
+			conn=db.getConnection();
+			String sql="SELECT no,title,poster, rownum "
+					+ "FROM "+tables[type]
+					+"WHERE rownum<=20"	;	
+			ps=conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				SeoulVO vo = new SeoulVO();
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				list.add(vo);
+			}
+			rs.close();
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
 		finally
 		{
-			
+			db.disConnection(conn, ps);
 		}
 		return list;
 	}
