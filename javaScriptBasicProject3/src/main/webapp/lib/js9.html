@@ -1,0 +1,58 @@
+<!-- onclick -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+let i=0;
+window.onload=()=>{
+	let r = document.querySelector("#read")
+	r.onmouseover=function(){
+		r.style.cursor='pointer'
+	}
+	r.onmouseout=function(){
+		r.style.cursor='none'
+	}
+	r.onclick=function(){
+		if(i==0)
+		{
+			let ss =document.querySelector("#s")
+			ss.style.display='' // open => show
+			r.textContent="닫기"
+			i=1;
+		}
+		else
+		{
+			let ss =document.querySelector("#s")
+			ss.style.display='none' // close => hide
+			r.textContent="더보기"
+			i=0;
+		}
+	}
+	document.querySelector("#click").onclick=function(){
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+	<a href="http://www.naver.com" id="click">Naver</a>
+	<pre>
+		‘무적함대’ 스페인이 화려한 부활을 알렸다. 2022-23시즌 유럽축구연맹(UEFA) 네이션스리그에서 
+		사상 첫 우승을 일구며 환호했다.
+		
+		<span id="read">더보기</span>
+		<span style="display:none" id="s">
+		스페인은 19일 네덜란드 로테르담의 페예노르트 스타디움에서 열린 대회 결승전에서 동유럽의 강호 
+		크로아티아와 전·후반 90분, 연장전 30분 등 120분간의 혈투를 0-0으로 마친 뒤 승부차기에서 
+		5-4로 이겼다.
+		
+		스페인이 국제대회에서 우승한 건 지난 2012년 유럽축구연맹(UEFA) 선수권대회(유로2012) 정상
+		에 오른 이후 11년 만이다. 네이션스리그 우승은 최초다. 스페인은 이 대회에서도 지난해 결승에 
+		올랐지만 프랑스에 1-2로 패해 준우승에 그친 바 있다.
+		</span>
+		
+	</pre>
+</body>
+</html>
