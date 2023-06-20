@@ -69,12 +69,13 @@ public class JsonParsingExample {
                         
                         
 
-                        if ("관광지".equals(label) && photoidObj != null) {
+                        if (!"테마여행".equals(label) && photoidObj != null) {
                             String poster = (String) photoidObj.get("imgpath");
                             if (poster != null) {
                             	
                             	System.out.println(count+")");
                                 System.out.println("이름 : " + title);
+                                System.out.println("구분 : "+label);
                                 System.out.println("태그 : "+tag);
                                 System.out.println("소개 : "+introduction);
                                 System.out.println("지역 : "+loc); 

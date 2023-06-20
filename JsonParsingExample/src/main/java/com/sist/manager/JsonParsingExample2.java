@@ -55,7 +55,7 @@ public class JsonParsingExample2 {
                         
                         JSONObject photoidObj = (JSONObject) repphotoObj.get("photoid");
 
-                        if ("관광지".equals(label) && photoidObj != null) {
+                        if (!"테마여행".equals(label) && photoidObj != null) {
                             String imgpath = (String) photoidObj.get("imgpath");
                             if (imgpath != null) {
                                 System.out.println(count + ". Title: " + title);
