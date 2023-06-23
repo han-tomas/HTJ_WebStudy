@@ -31,6 +31,9 @@
 	// =====> 자바로 이동 (Model1)
 	count=(count-((curpage*10)-10));
 	String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+	// Session을 읽어 온다 : Object getAttribute()
+	String id = (String)session.getAttribute("id");
+	// id가 null => 로그인이 안된 상태
 %>    
 <!DOCTYPE html>
 <html>
@@ -58,13 +61,39 @@ h1{
 	<div class="container">
 		<h1>자료실</h1>
 		<div class="row">
+		
 			<table class="table">
+				<tr>
+				<%
+					if(id!=null)
+					{
+				%>
+					<td class="text-right">
+						<%= session.getAttribute("name") %>님 로그인 중입니다.
+						<a href="../member/logout.jsp" class="btn btn-sm btn-primary">로그아웃</a>
+					</td>
+				<%
+					}
+					else
+					{
+				%>
+					<td class="text-right">
+	
+						<a href="../member/login.jsp" class="btn btn-sm btn-primary">로그인</a>
+					</td>
+				<%		
+					}
+				%>	
+				</tr>
+			</table>
+		<table class="table">
 				<tr>
 					<td>
 						<a href="insert.jsp" class="btn btn-sm btn-warning">새글</a>
 					</td>
 				</tr>
 			</table>
+			
 			<table class="table table-hover">
 				<tr class="danger">
 					<th class="text-center" width=10%>번호</th>

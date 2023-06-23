@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,6 +114,7 @@ $(function(){ // window.onload=function(){}
 				<tr>
 					<td colspan="2" class="text-center">
 						<input type=button class="btn btn-sm btn-danger" value=로그인 id="logBtn">
+						<a href="../dataBoard/list.jsp" class="btn btn-sm btn-success">게시판</a>
 					</td>
 				</tr>
 			</table>
