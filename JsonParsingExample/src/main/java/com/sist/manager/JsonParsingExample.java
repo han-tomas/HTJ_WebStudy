@@ -51,14 +51,14 @@ public class JsonParsingExample {
                         String introduction = (String) dataObj.get("introduction");
                         String phone = (String) dataObj.get("phoneno");
                         if(phone==null)
-                        	phone="--";   
+                        	phone="전화정보 정보 없음";   
                         JSONObject constendscdObj = (JSONObject) dataObj.get("contentscd");
                         String label = (String) constendscdObj.get("label");
                         JSONObject repphotoObj = (JSONObject) dataObj.get("repPhoto");
                         JSONObject region1cdObj = (JSONObject) dataObj.get("region1cd");
                         String loc="";
                         if(region1cdObj==null)
-                        	loc=" ";
+                        	loc="지역 정보 없음";
                         else
                         	loc = (String) region1cdObj.get("label");
                         
@@ -66,8 +66,23 @@ public class JsonParsingExample {
                             continue; // Skip this item if repphotoObj is null
                         }
                         JSONObject photoidObj = (JSONObject) repphotoObj.get("photoid");
-                        
-                        
+                        int lno = 0;
+                        if(label.equals("관광지"))
+                        {
+                        	lno=1;
+                        }
+                        else if(label.equals("음식점"))
+                        {
+                        	lno=2;
+                        }
+                        else if(label.equals("숙박"))
+                        {
+                        	lno=3;
+                        }
+                        else
+                        {
+                        	lno=4;
+                        }
 
                         if (!"테마여행".equals(label) && photoidObj != null) {
                             String poster = (String) photoidObj.get("imgpath");
@@ -75,7 +90,7 @@ public class JsonParsingExample {
                             	
                             	System.out.println(count+")");
                                 System.out.println("이름 : " + title);
-                                System.out.println("구분 : "+label);
+                                System.out.println("구분 : "+lno+". "+label);
                                 System.out.println("태그 : "+tag);
                                 System.out.println("소개 : "+introduction);
                                 System.out.println("지역 : "+loc); 
