@@ -189,7 +189,7 @@
       <Context docBase="JSPMiddleProject5" path="/JSPMiddleProject5" reloadable="true" source="org.eclipse.jst.jee.server:JSPMiddleProject5">
       <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
       </Context>
-      </Host>
+      <Context docBase="JSPMVCProject" path="/JSPMVCProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject"/></Host>
     </Engine>
   </Service>
 </Server>
