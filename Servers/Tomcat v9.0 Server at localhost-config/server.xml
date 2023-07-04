@@ -193,10 +193,11 @@
       <Context docBase="JSPFinalProject" path="/JSPFinalProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPFinalProject">
       <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
       </Context>
-      <Context docBase="FirstProject" path="/FirstProject" reloadable="true" source="org.eclipse.jst.jee.server:FirstProject">
-      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
+      
+      <Context docBase="FirstProjectTJ" path="/FirstProjectTJ" reloadable="true" source="org.eclipse.jst.jee.server:FirstProjectTJ">
+            <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
       </Context>
-      </Host>
+      <Context docBase="FirstProject" path="/FirstProject" reloadable="true" source="org.eclipse.jst.jee.server:FirstProject"/><Context docBase="JSPAjaxProject1" path="/JSPAjaxProject1" reloadable="true" source="org.eclipse.jst.jee.server:JSPAjaxProject1"/></Host>
     </Engine>
   </Service>
 </Server>
