@@ -18,6 +18,8 @@ public class MemberModel {
 	public String memberJoin(HttpServletRequest request,HttpServletResponse response)
 	{
 		request.setAttribute("main_jsp", "../member/join.jsp");
+		
+		CommonModel.commonReqeustData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("member/idcheck.do")

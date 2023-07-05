@@ -31,6 +31,8 @@ public class FreeBoardModel {
 		// board/list.jsp로 전송
 		request.setAttribute("main_jsp", "../board/list.jsp");
 		// main_jsp 부분이 화면 출력하는 부분.
+		
+		CommonModel.commonReqeustData(request);
 		return "../main/main.jsp"; // 띄우는건 메인화면을 띄운다.
 	}
 	// 데이터 추가
@@ -38,6 +40,8 @@ public class FreeBoardModel {
 	public String board_insert(HttpServletRequest request, HttpServletResponse response)
 	{
 		request.setAttribute("main_jsp", "../board/insert.jsp");
+		
+		CommonModel.commonReqeustData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("board/insert_ok.do")
@@ -71,6 +75,8 @@ public class FreeBoardModel {
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../board/detail.jsp");
+		
+		CommonModel.commonReqeustData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("board/delete.do")
@@ -96,6 +102,8 @@ public class FreeBoardModel {
 		FreeBoardVO vo = dao.freeboardUpdateData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../board/update.jsp");
+		
+		CommonModel.commonReqeustData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("board/update_ok.do")

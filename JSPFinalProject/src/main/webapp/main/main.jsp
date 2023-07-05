@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b4b325790b198b8b1a3a75d3ccaa60&libraries=services"></script>
 </head>
 <body id="top">
 <jsp:include page="header.jsp"></jsp:include>
