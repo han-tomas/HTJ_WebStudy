@@ -30,4 +30,13 @@ public class CreateDataBase {
     	}catch(Exception ex) {}
     	
     }
+    public void disConnection(Connection conn,CallableStatement ps) //오버로딩 // 프로시저 호출할때 쓰는 메소드 
+    {
+    	try
+    	{
+    		if(ps!=null) ps.close();
+    		if(conn!=null) conn.close();
+    	}catch(Exception ex) {}
+    	
+    }
 }
