@@ -145,9 +145,13 @@ $(function(){
   	 						◑${rvo.name }&nbsp;(${rvo.dbday })
   	 					</td>
   	 					<td class="text-right">
-  	 						<span class="btn btn-xs btn-success ups" data-no="${rvo.no }">수정</span>
-  	 						<a href="#" class="btn btn-xs btn-info">삭제</a>
-  	 						<a href="#" class="btn btn-xs btn-warning">댓글</a>
+  	 						<c:if test="${sessionScope.id!=null }">
+  	 							<c:if test="${sessionScope.id==rvo.id }">
+		  	 						<span class="btn btn-xs btn-success ups" data-no="${rvo.no }">수정</span>
+		  	 						<a href="#" class="btn btn-xs btn-info">삭제</a>
+  	 							</c:if>
+	  	 						<a href="#" class="btn btn-xs btn-warning">댓글</a>
+  	 						</c:if>
   	 					</td>
   	 				</tr>
   	 				<tr>
@@ -160,8 +164,8 @@ $(function(){
 			  	 				<input type="hidden" name="bno" value="${vo.no}">
 			  	 				<%-- bno는 다시 detail.do로 이동하기 위함 --%>
 			  	 				<input type="hidden" name="no" value="${rvo.no}">
-			  	 				<textarea rows="5" cols="60" name="msg" style="float: left">${rvo.msg }</textarea>
-			  						<input type=submit value="댓글수정" style="width: 120px;height: 105px;background-color: green;color: white;">
+			  	 				<textarea rows="5" cols="55" name="msg" style="float: left">${rvo.msg }</textarea>
+			  						<input type=submit value="댓글수정" style="width: 100px;height: 105px;background-color: green;color: white;">
 			  	 			</form>
 			  	 		</td>
 			  	 	</tr>
