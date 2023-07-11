@@ -94,16 +94,16 @@ $(function(){
         <ul>
          <%-- startPage : 1 , 11 , 21 , 31... --%>
          <c:if test="${startPage>1 }">
-          <li><a href="../recipe/chef_list.do?page=${startPage-1 }&chef=${chef}">&laquo; Previous</a></li>
+          <li><a href="../recipe/chef_list.do?page=${startPage-1 }&chef=${chef}&fd=${fd}">&laquo; Previous</a></li>
          </c:if>
          
          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${curpage==i?"class=current":"" }><a href="../recipe/chef_list.do?page=${i }&chef=${chef}">${i }</a></li>
+            <li ${curpage==i?"class=current":"" }><a href="../recipe/chef_list.do?page=${i }&chef=${chef}&fd=${fd}">${i }</a></li>
          </c:forEach>
          
           
          <c:if test="${endPage<totalpage }">
-          <li><a href="../recipe/chef_list.do?page=${endPage+1 }&chef=${chef}">Next &raquo;</a></li>
+          <li><a href="../recipe/chef_list.do?page=${endPage+1 }&chef=${chef}&fd=${fd}">Next &raquo;</a></li>
          </c:if>
         </ul>
       </nav>
