@@ -3,6 +3,24 @@ import java.util.*;
 import java.sql.*;
 import com.sist.common.*;
 import com.sist.vo.*;
+/*
+	try
+	{
+		getConnection()
+		insert
+		update
+		insert
+		commit()
+	}catch(Exception ex)
+	{
+		rollback()
+		ex.printStackTrace();
+	}
+	finally
+	{
+	
+	}
+*/
 
 public class FreeBoardReplyDAO {
 	private Connection conn;
@@ -102,4 +120,155 @@ public class FreeBoardReplyDAO {
 		}
 	}
 	//대댓글 입력 => 트랜잭션 적용(일괄 처리) => commit(), catch => rollback()
+	// Spring
+	// @Transactional
+	// 금융권 => 카드결제 => 포인트
+	/*                              gi		gs		gt 
+			AAAAAAAA				1		0		0  
+			  =>BBBBBBB				1		1		1
+			 (=>DDDDDDD				1		1		1 )
+			    =>CCCCCCC			1		2		2
+			  =>DDDDDDD				1		1		1
+			
+			                        gi		gs		gt 
+			AAAAAAAA				1		0		0  
+			  =>EEEEEEE				1		1		1  
+			  =>DDDDDDD				1		2(1+1)	1  
+			  =>BBBBBBB				1		3(2+1)	1
+			    =>CCCCCCC			1		4(3+1)	2
+			 
+	 */
+	public void replyReplyInsert(int pno,FreeBoardReplyVO vo)
+	{
+		try
+		{
+			conn=db.getConnection();
+			//autocommit해제
+			conn.setAutoCommit(false);
+			// 처리 => SQL문장이 여러개 수행
+			String sql="SELECT group_id,group_step,group_tab "
+					+ "FROM project_freeboard_reply "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int gi = rs.getInt(1);
+			int gs = rs.getInt(2);
+			int gt = rs.getInt(3);
+			rs.close();
+			
+			//group_step+1 => update
+			sql="UPDATE project_freeboard_reply SET "
+					+ "group_step=group_step+1 "
+					+ "WHERE group_id=? AND group_step>?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, gi);
+			ps.setInt(2, gs);
+			ps.executeUpdate(); // (commit()=>X)
+			//insert => insert
+			sql="INSERT INTO project_freeboard_reply VALUES("
+					+ "pfr_no_seq.nextval,?,?,?,?,SYSDATE,?,?,?,?,0)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getBno());
+			ps.setString(2, vo.getId());
+			ps.setString(3, vo.getName());
+			ps.setString(4, vo.getMsg());
+			ps.setInt(5, gi);
+			ps.setInt(6, gs+1);
+			ps.setInt(7, gt+1);
+			ps.setInt(8, pno);
+			ps.executeUpdate();
+			//depth => update
+			sql="UPDATE project_freeboard_reply SET "
+					+ "depth=depth+1 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			ps.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception ex)
+		{
+			try
+			{
+				conn.rollback();
+			}catch(Exception e) {}
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// conn의 원래 기능으로 설정
+			try
+			{
+				conn.setAutoCommit(true);
+			}catch(Exception ex){}
+			db.disConnection(conn, ps);
+		}
+	}
+	// 댓글 삭제
+	public void replyDelete(int no)
+	{
+		try
+		{
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			// SQL문장이 여러개 수행
+			String sql="SELECT root,depth "
+					+ "FROM project_freeboard_reply "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int root=rs.getInt(1);
+			int depth=rs.getInt(2);
+			rs.close();
+			
+			if(depth==0)
+			{
+				sql="DELETE FROM project_freeboard_reply "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
+			}
+			else
+			{
+				String msg="관리자가 삭제한 댓글입니다.";
+				sql="UPDATE project_freeboard_reply SET "
+						+ "msg=? "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, msg);
+				ps.setInt(2, no);
+				ps.executeUpdate();
+			}
+			
+			//depth 감소
+			sql="UPDATE project_freeboard_reply SET "
+					+ "depth=depth-1 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, root);
+			ps.executeUpdate();
+			conn.commit();
+		}catch(Exception ex)
+		{
+			try
+			{
+				conn.rollback();
+			}catch(Exception e) {}
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// conn의 원래 기능으로 설정
+			try
+			{
+				conn.setAutoCommit(true);
+			}catch(Exception ex){}
+			db.disConnection(conn, ps);
+		}
+	}
 }

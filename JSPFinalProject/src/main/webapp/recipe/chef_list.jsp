@@ -77,7 +77,7 @@ $(function(){
 	           <input type=hidden name=chef value="${chef }">
 	           <input type=text name=fd size=20 class="input-sm" id="fd" value=${sel!='all'?fd:"" }>
 	           <input type="button" value="검색" class="btn btn-sm btn-danger" id="findBtn">
-	           </form>
+	       </form>
           </header>
           <ul class="nospace clear">
            <c:forEach var="vo" items="${list }" varStatus="s">
