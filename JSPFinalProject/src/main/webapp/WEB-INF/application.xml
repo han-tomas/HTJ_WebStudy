@@ -14,4 +14,5 @@
   <bean id="admin" class="com.sist.model.AdminPageModel"/>
   <bean id="jjimlike" class="com.sist.model.FoodJJimLikeModel"/>
   <bean id="notice" class="com.sist.model.NoticeModel"/>
+  <bean id="recommend" class="com.sist.model.RecommendModel"/>
 </beans>
