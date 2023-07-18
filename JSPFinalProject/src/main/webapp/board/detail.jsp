@@ -28,7 +28,7 @@ $(function(){
 		}	
 		else
 		{
-			$(this).text("수정");
+			$(this).text("삭제");
 			$('#delTr').hide();
 			i=0;
 		}
