@@ -38,7 +38,7 @@ public class CartDAO {
 			conn=db.getConnection();
 			String sql="SELECT COUNT(*) "
 					+ "FROM project_cart "
-					+ "WHERE goods_no=? AND type=?";
+					+ "WHERE goods_no=? AND type=? AND issale<>1";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vo.getGoods_no());
 			ps.setInt(2, 1);
@@ -50,10 +50,11 @@ public class CartDAO {
 			{
 				sql="UPDATE project_cart SET "
 						+ "amount = amount+"+vo.getAmount()
-						+" WHERE goods_no=? AND type=?";
+						+" WHERE goods_no=? AND type=? AND id=?";
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, vo.getGoods_no());
 				ps.setInt(2, 1);
+				ps.setString(3, vo.getId());
 				ps.executeUpdate();
 			}
 			else
@@ -202,7 +203,7 @@ public class CartDAO {
 			db.disConnection(conn, ps);
 		}
 	}
-	public List<CartVO> mypageBuyListData(String id)
+	public List<CartVO> mypageCartBuyListData(String id)
 	{
 		List<CartVO> list = new ArrayList<CartVO>();
 		try

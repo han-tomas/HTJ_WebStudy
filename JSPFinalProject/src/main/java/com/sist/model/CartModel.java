@@ -34,7 +34,7 @@ public class CartModel {
 	public void cart_buy(HttpServletRequest request, HttpServletResponse response)
 	{
 		String no = request.getParameter("cart_no");
-		
+		/* System.out.println(no); */
 		CartDAO dao = CartDAO.newInstance();
 		dao.cartBuy(Integer.parseInt(no));
 	}

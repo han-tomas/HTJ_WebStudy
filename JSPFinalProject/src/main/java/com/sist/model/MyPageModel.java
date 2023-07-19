@@ -71,4 +71,18 @@ public class MyPageModel {
 		dao.cartCancel(Integer.parseInt(no));
 		return "redirect:../mypage/mypage_cart.do";
 	}
+	@RequestMapping("mypage/mypage_buy.do")
+	public String mypage_buy(HttpServletRequest request, HttpServletResponse response)
+	{
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		CartDAO dao = CartDAO.newInstance();
+		List<CartVO> list = dao.mypageCartBuyListData(id);
+		request.setAttribute("list", list);
+		
+		request.setAttribute("mypage_jsp", "../mypage/mypage_buy.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		CommonModel.commonReqeustData(request);
+		return "../main/main.jsp";
+	}
 }

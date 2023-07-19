@@ -11,7 +11,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#byBtn').click(function(){
+	/* $('#byBtn').click(function(){
 		let no = $('#byBtn').attr("data-no");
 		$.ajax({
 			type:'post',
@@ -22,7 +22,17 @@ $(function(){
 				requestPay()
 			}
 		})
-		requestPay()
+	}) */
+	$('#byBtn').click(function(){
+		let no=$('#byBtn').attr("data-no");
+		$.ajax({
+			type:'post',
+			url:'../cart/cart_buy.do',
+			data:{"cart_no":no},
+			success:function(result){
+				requestPay()
+			}
+		})
 	})
 	
 })
@@ -58,8 +68,7 @@ function requestPay() {
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
 	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
+	        location.href="../mypage/mypage_buy.do"
 	    }
 	});
 }
